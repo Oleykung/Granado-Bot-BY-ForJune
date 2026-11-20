@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Granado Espada M - Boss Timer Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0f12; --card:#1a1a22; --red:#ff3b3b; --yellow:#ffcc33; }
+  body { font-family:'Kanit',sans-serif; background:var(--bg); color:#eee; margin:0; padding:20px; }
+  h1 { text-align:center; font-size:28px; margin-bottom:10px; }
+  .sub { text-align:center; color:#aaa; margin-bottom:20px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+  .boss-card { background:var(--card); border-radius:14px; padding:16px; border:1px solid #2a2a35; position:relative; }
+  .boss-card.spawn-soon { border-color:var(--yellow); box-shadow:0 0 12px rgba(255,204,51,0.3); }
+  .boss-card.spawned { border-color:var(--red); box-shadow:0 0 18px rgba(255,59,59,0.4); animation:pulse 1.2s infinite; }
+  @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.02)} 100%{transform:scale(1)} }
+  .th-name { color:var(--red); font-size:22px; font-weight:700; }
+  .en-name { color:var(--yellow); font-size:14px; margin-bottom:8px; }
+  .meta { font-size:13px; color:#bbb; line-height:1.5; }
+  .timer { margin-top:10px; font-size:18px; font-weight:600; text-align:center; padding:8px; border-radius:8px; background:#23232f; }
+  .timer.spawn { background:#ff3b3b22; color:var(--red); }
+  .timer.soon { background:#ffcc3322; color:var(--yellow); }
+  .actions { display:flex; gap:8px; margin-top:12px; }
+  button { flex:1; padding:10px; border:none; border-radius:8px; font-family:'Kanit'; font-weight:600; cursor:pointer; }
+  .btn-kill { background:var(--red); color:white; }
+  .city-badge { position:absolute; top:12px; right:12px; font-size:11px; padding:3px 8px; border-radius:20px; }
+  .city-Rebol { background:#2a4a7a; } .city-Coimbra { background:#2a7a5a; } .city-Auch { background:#7a4a2a; }
+  #log { margin-top:20px; background:#111; padding:12px; border-radius:10px; max-height:200px; overflow-y:auto; font-size:12px; color:#888; }
+</style>
+</head>
+<body>
+<h1>Granado Espada M - Boss Timer</h1>
+<div class="sub">Reboldoeux / Coimbra / Auch - 12 บอส | แจ้งเตือน 10 นาที + ตอนเกิด | @everyone</div>
+<div style="text-align:center;margin-bottom:16px;"><span style="color:#ff3b3b">● ไทยสีแดง</span> &nbsp; <span style="color:#ffcc33">● อังกฤษสีเหลือง</span> | ICT (UTC+7)</div>
+<div class="grid" id="grid"></div>
+<div id="log"></div>
+<script>
+let bosses=[];
+async function fetchBosses(){
+  try{ const res=await fetch('/api/bosses'); bosses=await res.json(); }
+  catch(e){
+    const saved=localStorage.getItem('boss_timers');
+    if(!saved){
+      try{ const r=await fetch('../bosses.json'); const list=await r.json(); const now=Date.now(); const timers={}; list.forEach(b=>{timers[b.id]={next_spawn:new Date(now+b.respawn_min*60000).toISOString()}}); localStorage.setItem('boss_timers',JSON.stringify(timers)); bosses=list.map(b=>({...b,next_spawn:timers[b.id].next_spawn,seconds_left:(new Date(timers[b.id].next_spawn)-new Date())/1000})); }
+      catch(_){}
+    } else {
+      const timers=JSON.parse(saved);
+      try{ const r=await fetch('../bosses.json'); const list=await r.json(); bosses=list.map(b=>{const t=timers[b.id]; const ns=t?new Date(t.next_spawn):new Date(); const diff=(ns-new Date())/1000; return {...b,next_spawn:t?.next_spawn,next_spawn_human:ns.toLocaleString('th-TH'),seconds_left:diff,time_left_text:diff<=0?'เกิดแล้ว!':Math.floor(diff/60)+'น'};}); }
+      catch(_){}
+    }
+  }
+  render();
+}
+function render(){
+  const grid=document.getElementById('grid'); grid.innerHTML=''; bosses.sort((a,b)=>a.seconds_left-b.seconds_left); bosses.forEach(b=>{
+    const isSpawned=b.seconds_left<=0; const isSoon=b.seconds_left>0&&b.seconds_left<=600; let cityClass='city-Rebol'; if(b.city_en.includes('Coimbra')) cityClass='city-Coimbra'; if(b.city_en.includes('Auch')) cityClass='city-Auch';
+    const card=document.createElement('div'); card.className=`boss-card ${isSpawned?'spawned':''} ${isSoon?'spawn-soon':''}`;
+    card.innerHTML=`<div class="city-badge ${cityClass}">${b.city_th}</div><div class="th-name">## ${b.name_th}</div><div class="en-name">-# ${b.name_en}</div><div class="meta"><b>แผนที่:</b> ${b.map_th} (${b.map_en})<br><b>เมือง:</b> ${b.city_th}<br><b>รี:</b> ${b.respawn_min}น | <b>รอบหน้า:</b> ${b.next_spawn_human||'-'}</div><div class="timer ${isSpawned?'spawn':isSoon?'soon':''}">${b.time_left_text||''}</div><div class="actions"><button class="btn-kill" onclick="killBoss('${b.id}')">☠️ Kill - ${b.name_th}</button></div>`;
+    grid.appendChild(card);
+  });
+}
+async function killBoss(id){
+  if(!confirm('ยืนยันฆ่าบอสนี้?')) return;
+  try{ const res=await fetch(`/api/kill/${id}`,{method:'POST'}); if(res.ok){ fetchBosses(); return; } }catch(e){}
+  const saved=JSON.parse(localStorage.getItem('boss_timers')||'{}'); const boss=bosses.find(x=>x.id===id); const next=new Date(Date.now()+boss.respawn_min*60000).toISOString(); saved[id]={next_spawn:next}; localStorage.setItem('boss_timers',JSON.stringify(saved)); fetchBosses();
+}
+setInterval(fetchBosses,5000); fetchBosses();
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "hill_giant",
+    "name_th": "ฮิลล์ ไจแอนท์",
+    "name_en": "Hill Giant",
+    "map_th": "แยกเฟอร์รุซิโอ",
+    "map_en": "Ferrucio Junction",
+    "city_th": "เมืองเรโบลโด",
+    "city_en": "Cite de Reboldoeux",
+    "respawn_min": 120
+  },
+  {
+    "id": "nest_giant",
+    "name_th": "ไจแอนท์หัวรังนก",
+    "name_en": "Bird Nest Giant",
+    "map_th": "ป่าด้านนอกเรโบลโด",
+    "map_en": "Reboldoeux Outer Forest",
+    "city_th": "เมืองเรโบลโด",
+    "city_en": "Cite de Reboldoeux",
+    "respawn_min": 120
+  },
+  {
+    "id": "golden_spider",
+    "name_th": "แมงมุมทองคำ",
+    "name_en": "Golden Spider",
+    "map_th": "ท่อระบายน้ำเรโบลโด",
+    "map_en": "Reboldoeux Culvert",
+    "city_th": "เมืองเรโบลโด",
+    "city_en": "Cite de Reboldoeux",
+    "respawn_min": 180
+  },
+  {
+    "id": "testormento",
+    "name_th": "เทสทอร์เมนโต้",
+    "name_en": "Testormento",
+    "map_th": "ประตูราชินี",
+    "map_en": "Queens Gate",
+    "city_th": "เมืองเรโบลโด",
+    "city_en": "Cite de Reboldoeux",
+    "respawn_min": 180
+  },
+  {
+    "id": "valance",
+    "name_th": "วาลานซ์",
+    "name_en": "Valance",
+    "map_th": "ซากปรักหักพังเตตร้า",
+    "map_en": "Tetra Ruins",
+    "city_th": "ท่าเรือคอยม์บรา",
+    "city_en": "The Port of Coimbra",
+    "respawn_min": 120
+  },
+  {
+    "id": "pollux",
+    "name_th": "พอลลักซ์",
+    "name_en": "Pollux",
+    "map_th": "ซากปรักหักพังเตตร้า",
+    "map_en": "Tetra Ruins",
+    "city_th": "ท่าเรือคอยม์บรา",
+    "city_en": "The Port of Coimbra",
+    "respawn_min": 120
+  },
+  {
+    "id": "lava_reef",
+    "name_th": "ลาวา รีฟ",
+    "name_en": "Lava Reef",
+    "map_th": "ห้องโบราณวัตถุ",
+    "map_en": "Relic Room",
+    "city_th": "ท่าเรือคอยม์บรา",
+    "city_en": "The Port of Coimbra",
+    "respawn_min": 180
+  },
+  {
+    "id": "secret_tower",
+    "name_th": "หอคอยลับ",
+    "name_en": "Secret Tower",
+    "map_th": "หอคอยลับเตตร้า",
+    "map_en": "Tetra Secret Tower",
+    "city_th": "ท่าเรือคอยม์บรา",
+    "city_en": "The Port of Coimbra",
+    "respawn_min": 180
+  },
+  {
+    "id": "mighty_victor",
+    "name_th": "ไมตี้ วิคเตอร์",
+    "name_en": "Mighty Victor",
+    "map_th": "ทุ่งเมืองอุช",
+    "map_en": "Auch Field",
+    "city_th": "เมืองอุช",
+    "city_en": "City of Auch",
+    "respawn_min": 120
+  },
+  {
+    "id": "betelgeuse",
+    "name_th": "เบเทลกิวส์",
+    "name_en": "Betelgeuse",
+    "map_th": "สุสานใต้ดินอุช",
+    "map_en": "Auch Underground Grave",
+    "city_th": "เมืองอุช",
+    "city_en": "City of Auch",
+    "respawn_min": 180
+  },
+  {
+    "id": "merman_chief",
+    "name_th": "หัวหน้าเงือก",
+    "name_en": "Merman Chieftain",
+    "map_th": "ชายฝั่งอุช",
+    "map_en": "Auch Coast",
+    "city_th": "เมืองอุช",
+    "city_en": "City of Auch",
+    "respawn_min": 180
+  },
+  {
+    "id": "stone_cortes",
+    "name_th": "สโตน คอร์เตส",
+    "name_en": "Stone Cortes",
+    "map_th": "หอนาฬิกาชั้น 2",
+    "map_en": "Clock Tower 2F",
+    "city_th": "เมืองอุช",
+    "city_en": "City of Auch",
+    "respawn_min": 240
+  }
+]

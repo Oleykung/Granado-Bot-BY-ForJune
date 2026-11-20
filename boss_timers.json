@@ -1,0 +1,74 @@
+{
+  "hill_giant": {
+    "next_spawn": "2026-11-20T12:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "nest_giant": {
+    "next_spawn": "2026-11-20T12:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "golden_spider": {
+    "next_spawn": "2026-11-20T13:21:35.456105+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": "2026-11-20T10:21:35.456105+07:00"
+  },
+  "testormento": {
+    "next_spawn": "2026-11-20T13:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "valance": {
+    "next_spawn": "2026-11-20T12:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "pollux": {
+    "next_spawn": "2026-11-20T12:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "lava_reef": {
+    "next_spawn": "2026-11-20T13:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "secret_tower": {
+    "next_spawn": "2026-11-20T13:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "mighty_victor": {
+    "next_spawn": "2026-11-20T12:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "betelgeuse": {
+    "next_spawn": "2026-11-20T13:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "merman_chief": {
+    "next_spawn": "2026-11-20T13:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  },
+  "stone_cortes": {
+    "next_spawn": "2026-11-20T14:16:27.793207+07:00",
+    "notified_10m": false,
+    "notified_spawn": false,
+    "last_kill": null
+  }
+}
